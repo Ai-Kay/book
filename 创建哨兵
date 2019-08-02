@@ -1,34 +1,27 @@
-- **1. 安装 redis-sentinel**
+- 1. 安装 redis-sentinel
 
-  ```
   apt install redis-sentinel
-  ```
 
-  
 
-- **2. 安装完成后**
 
-  ```
-  会在/etc/redis/目录下生成一个sentinel.conf.dpkg-new文件
-  ```
+- 2. 安装完成后
 
-  
+会在/etc/redis/目录下生成一个sentinel.conf.dpkg-new文件
 
-- **3. 复制这个文件, 创建3个哨兵**
 
-  ```
+
+- 3. 复制这个文件, 创建3个哨兵
+
   cp sentinel.conf.dpkg-new sentinel_26380.conf
   
   cp sentinel.conf.dpkg-new sentinel_26381.conf
   
   cp sentinel.conf.dpkg-new sentinel_26382.conf
-  ```
 
 
 
-- **4. 修改配置文件中的属性**
+- 4. 修改配置文件中的属性
 
-  ```
   # 依次修改这3个哨兵文件
   
   vi sentinel_26380.conf
@@ -45,18 +38,14 @@
   sentinel down-after-milliseconds mymaster 30000
   sentinel parallel-syncs mymaster 1
   sentinel failover-timeout mymaster 180000
-  ```
 
-  
+
 
 - **5. 启动哨兵**
 
-  ```
+
   redis-sentinel sentinel_26380.conf
   
   redis-sentinel sentinel_26381.conf
   
   redis-sentinel sentinel_26382.conf
-  ```
-
-  
