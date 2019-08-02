@@ -1,0 +1,62 @@
+- **1. 安装 redis-sentinel**
+
+  ```
+  apt install redis-sentinel
+  ```
+
+  
+
+- **2. 安装完成后**
+
+  ```
+  会在/etc/redis/目录下生成一个sentinel.conf.dpkg-new文件
+  ```
+
+  
+
+- **3. 复制这个文件, 创建3个哨兵**
+
+  ```
+  cp sentinel.conf.dpkg-new sentinel_26380.conf
+  
+  cp sentinel.conf.dpkg-new sentinel_26381.conf
+  
+  cp sentinel.conf.dpkg-new sentinel_26382.conf
+  ```
+
+
+
+- **4. 修改配置文件中的属性**
+
+  ```
+  # 依次修改这3个哨兵文件
+  
+  vi sentinel_26380.conf
+  vi sentinel_26381.conf
+  vi sentinel_26382.conf
+  
+  # 配置文件的属性
+  
+  bind 127.0.0.1  # 你自己的ip地址
+  port 26380 # 哨兵端口
+  daemonize yes  # 是否开启守护
+  logfile /var/log/redis-sentinel.log
+  sentinel monitor mymaster 127.0.0.1 6380 2  # 主从redis的ip和端口 
+  sentinel down-after-milliseconds mymaster 30000
+  sentinel parallel-syncs mymaster 1
+  sentinel failover-timeout mymaster 180000
+  ```
+
+  
+
+- **5. 启动哨兵**
+
+  ```
+  redis-sentinel sentinel_26380.conf
+  
+  redis-sentinel sentinel_26381.conf
+  
+  redis-sentinel sentinel_26382.conf
+  ```
+
+  
