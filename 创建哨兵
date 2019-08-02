@@ -41,7 +41,7 @@
 
 
 
-- **5.启动哨兵**
+- **5. 启动哨兵**
 
 
   redis-sentinel sentinel_26380.conf
