@@ -1,0 +1,13 @@
+# 需求，装饰器调用会改变被装饰函数的函数名称
+
+import functools
+
+def my_decorator(func):
+    
+    @functools.wrap(func)
+    def wrapper()
+      pass
+    
+    return wrapper
+
+解决方法：装饰器中加装饰器 @functools.wrap(func)
