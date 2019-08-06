@@ -1,0 +1,60 @@
+1.进入apt目录，备份文件
+
+cd /etc/apt/
+mv sources.list sources.list.bak
+
+
+
+2.打开sources.list
+
+vim sources.list
+
+
+
+3.覆盖文件的内容，更改下载源，将下方配置写入sources.list
+
+# aliyun
+deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse partner
+deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted universe multiverse
+
+
+
+4.使用阿里云的源（使用下方两个命令）
+
+curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
+add-apt-repository "deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
+
+
+
+5.检查
+
+apt-get update
+
+
+
+6.安装docker
+
+apt-get install docker-ce -y
+
+
+
+7.启动docker
+
+systemctl start docker
+systemctl status docker
+
+
+
+8.测试docker
+
+docker version
+
+
+
+
+
+
+
+
