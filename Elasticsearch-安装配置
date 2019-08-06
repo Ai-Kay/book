@@ -1,0 +1,36 @@
+1.从仓库拉取镜像
+sudo docker image pull delron/elasticsearch-ik:2.4.6-1.0
+
+
+
+
+# 这里选取教学资料中文件进行安装
+
+
+1.解压教学资料中本地镜像
+sudo docker load -i elasticsearch-ik-2.4.6_docker.tar
+
+
+2.配置Elasticsearch-ik
+将教学资料中的elasticsearc-2.4.6目录拷贝到home目录下。
+修改/home/python/elasticsearc-2.4.6/config/elasticsearch.yml第54行。
+更改ip地址为本机真实ip地址。（如果容器开启后闪退，ip改为0.0.0.0）
+
+
+3.在/elasticsearc-2.4.6/config/下创建一个空文件夹 scripts 
+
+
+4.使用Docker运行Elasticsearch-ik (如果容器开启后闪退，-dti 改为 -ti 也就是取消守护进程)  -v 后面对应得是你配置文件存放得路径
+sudo docker run -dti --name=elasticsearch --network=host -v /home/python/elasticsearch-2.4.6/config:/usr/share/elasticsearch/config delron/elasticsearch-ik:2.4.6-1.0
+
+
+5.容器运行后，会卡顿在那里，原因是未开启守护进程，这时候不能 ctrl+c 退出， 退出后容器会自动关闭，直接关闭这个终端，开启新的终端即可
+
+
+
+
+
+
+
+
+
